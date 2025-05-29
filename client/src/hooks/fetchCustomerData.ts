@@ -17,6 +17,7 @@ type FetchDataResponse = {
   error: string | null;
   loading: boolean;
 };
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
 
 const useFetchCustomerData = (): FetchDataResponse => {
   const [data, setData] = useState<CustomerDetails[] | null>(null);
@@ -29,15 +30,14 @@ const useFetchCustomerData = (): FetchDataResponse => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8000/getAllCustomerData",
+          `${API_BASE_URL}/getAllCustomerData`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-
             body: JSON.stringify({ shopName }),
-          },
+          }
         );
 
         if (!response.ok) {

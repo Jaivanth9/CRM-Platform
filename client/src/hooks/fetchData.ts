@@ -19,6 +19,7 @@ interface FetchDataResponse {
   error: string | null;
   loading: boolean;
 }
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
 
 const useFetchShopData = (): FetchDataResponse => {
   const [data, setData] = useState<ShopData | null>(null);
@@ -34,13 +35,13 @@ const useFetchShopData = (): FetchDataResponse => {
           throw new Error("Email not found in local storage");
         }
 
-        const response = await fetch("http://localhost:8000/getshopdata", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email }),
-        });
+        const response = await fetch(`${API_BASE_URL}/getshopdata`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ email }),
+});
 
         if (!response.ok) {
           throw new Error("Failed to fetch data");

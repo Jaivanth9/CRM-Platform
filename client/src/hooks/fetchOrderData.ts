@@ -13,6 +13,7 @@ type FetchDataResponse = {
   error: string | null;
   loading: boolean;
 };
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
 
 const useFetchOrderData = (): FetchDataResponse => {
   const [data, setData] = useState<OrderDetails[] | null>(null);
@@ -24,14 +25,13 @@ const useFetchOrderData = (): FetchDataResponse => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/getAllOrderData", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify({ shopName }),
-        });
+        const response = await fetch(`${API_BASE_URL}/getAllOrderData`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ shopName }),
+});
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }

@@ -11,6 +11,7 @@ type FetchDataResponse = {
   error: string | null;
   loading: boolean;
 };
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
 
 const useFetchCampaignData = (): FetchDataResponse => {
   const [data, setData] = useState<CampaignDetails[] | []>([]);
@@ -20,12 +21,9 @@ const useFetchCampaignData = (): FetchDataResponse => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:8000/getAllCampaignData",
-          {
-            method: "GET",
-          },
-        );
+        const response = await fetch(`${API_BASE_URL}/getAllCampaignData`, {
+          method: "GET",
+        }); 
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
