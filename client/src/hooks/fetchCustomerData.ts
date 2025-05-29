@@ -17,7 +17,7 @@ type FetchDataResponse = {
   error: string | null;
   loading: boolean;
 };
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://crm-platform-dcbs.onrender.com";
 
 const useFetchCustomerData = (): FetchDataResponse => {
   const [data, setData] = useState<CustomerDetails[] | null>(null);
