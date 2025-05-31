@@ -21,7 +21,6 @@ export type Customer = {
   custName: string;
   custEmail: string;
 };
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://crm-platform-dcbs.onrender.com";
 
 const columns: ColumnDef<Customer>[] = [
   {
@@ -61,7 +60,7 @@ const columns: ColumnDef<Customer>[] = [
     ),
   },
 ];
-
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://crm-platform-dcbs.onrender.com";
 const SendCampaignTable = () => {
   const { data, loading, error } = useFetchCustomerData();
   const table = useReactTable({

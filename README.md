@@ -1,4 +1,4 @@
-#  Mini CRM
+# CRM-Platform
 
 Welcome to the  Mini CRM project! This project is a demonstration of a basic Customer Relationship Management (CRM) application developed using the following technologies:
 - Next.js
@@ -39,7 +39,7 @@ Make sure you have the following installed on your machine:
 ### Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/mangalamraj/CRM.git
+    git clone https://github.com/Jaivanth9/CRM-Platform.git
     cd CRM
     ```
 
