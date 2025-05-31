@@ -31,6 +31,7 @@ const CustOrdComponent = () => {
   const [orderEmail, setOrderEmail] = useState("");
   const [amount, setAmount] = useState("");
   const [orderDate, setOrderDate] = useState("");
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://crm-platform-dcbs.onrender.com";
 
   const handleCustomerSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,13 +44,14 @@ const CustOrdComponent = () => {
       shopName,
     };
     try {
-      const response = await fetch("http://localhost:8000/customer", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(customerData),
-      });
+      const response = await fetch(`${API_BASE_URL}/customer`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(customerData),
+});
+
       if (response.ok) {
         alert("Customer submitted");
         router.push(`${shopName}/${localStorage.getItem("email")}/campaign`);
@@ -63,13 +65,14 @@ const CustOrdComponent = () => {
     e.preventDefault();
     const orderData = { orderName, orderEmail, amount, orderDate, shopName };
     try {
-      const response = await fetch("http://localhost:8000/order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(orderData),
-      });
+      const response = await fetch(`${API_BASE_URL}/order`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(orderData),
+});
+
       if (response.ok) {
         alert("Order submitted");
         window.location.reload();

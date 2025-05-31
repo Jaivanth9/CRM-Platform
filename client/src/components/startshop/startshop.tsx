@@ -29,19 +29,20 @@ const StartShop = () => {
   const handleDetailsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDetails(e.target.value);
   };
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://crm-platform-dcbs.onrender.com";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8000/addshop", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: user,
-          name: name,
-          description: details,
-        }),
-      });
+      const response = await fetch(`${API_BASE_URL}/addshop`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    email: user,
+    name: name,
+    description: details,
+  }),
+});
       if (response.ok) {
         toast.success("✨Shop Launched!", {
           position: "bottom-right",

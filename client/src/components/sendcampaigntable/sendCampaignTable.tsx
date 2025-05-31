@@ -21,6 +21,7 @@ export type Customer = {
   custName: string;
   custEmail: string;
 };
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://crm-platform-dcbs.onrender.com";
 
 const columns: ColumnDef<Customer>[] = [
   {
@@ -74,7 +75,7 @@ const SendCampaignTable = () => {
       .getSelectedRowModel()
       .rows.map((row) => row.original);
     try {
-      const response = await fetch("http://localhost:8000/sendCampaign", {
+      const response = await fetch(`${API_BASE_URL}/sendCampaign`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
